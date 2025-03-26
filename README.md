@@ -28,6 +28,6 @@ Migrasi database project
   php artisan migrate:fresh
 ```
 Jalankan project
-```http
+```bash
   php artisan ser
 ```
