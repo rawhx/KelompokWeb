@@ -2,6 +2,12 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     @include('components.head', ['title' => 'Register'])
     <body>
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show position-absolute" style="top: 20px;right: 30px;" role="alert">
+                <strong>Error!</strong>  {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <section class="vh-100 d-flex mx-4">
             <div class="container-fluid">
               <div class="row d-flex justify-content-center align-items-center h-100">
@@ -13,36 +19,37 @@
                 <div class="col-lg-6 col-xl-4 offset-xl-1">
                     <h2 class="mb-5 fw-bold">Sign Up</h3>
                     
-                    <form>
+                    <form action="{{route('register')}}" method="POST">
+                        @csrf
                         <!-- Email input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="email">Email address</label>
-                            <input type="email" id="email" class="form-control form-control-lg"
+                            <input type="email" name="email" id="email" class="form-control form-control-lg"
                                 placeholder="Enter email address" />
                         </div>
 
                         <!-- Username input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="username">Username</label>
-                            <input type="email" id="username" class="form-control form-control-lg"
+                            <input type="text" name="username" id="username" class="form-control form-control-lg"
                                 placeholder="Enter username" />
                         </div>
             
                         <!-- Password input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="password">Password</label>
-                            <input type="password" id="password" class="form-control form-control-lg"
+                            <input type="password" name="password" id="password" class="form-control form-control-lg"
                                 placeholder="Enter password" />
                         </div>
 
                         <!-- Konfirmasi Password input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="confirmPassword">Confirm Password</label>
-                            <input type="password" id="confirmPassword" class="form-control form-control-lg"
+                            <input type="password" name="confirmpassword" id="confirmPassword" class="form-control form-control-lg"
                                 placeholder="Enter confirm password" />
                         </div>
             
-                        <button type="button" class="btn btn-primary btn-lg w-100 mb-4">Sign Up</button>
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-4">Sign Up</button>
 
                         <p class="text-center mb-0 mb-lg-5">
                             Have an account? <a class="fw-bold text-red text-decoration-none" href="/login">Sign In</a>
