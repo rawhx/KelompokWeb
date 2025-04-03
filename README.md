@@ -15,6 +15,10 @@ Salin file .env.example menjadi .env agar konfigurasi environment dapat digunaka
 ```bash
   cp .env.example .env
 ```
+atau
+```bash
+  copy .env.example .env
+```
 Setelah berada di direktori project, install semua dependency menggunakan perintah:
 ```bash
   composer install
@@ -26,6 +30,10 @@ Setelah semua terinstal, buat key project
 Migrasi database project
 ```bash
   php artisan migrate:fresh
+```
+Storage link
+```bash
+  php artisan storage:link
 ```
 Jalankan project
 ```bash
