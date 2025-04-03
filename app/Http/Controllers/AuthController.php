@@ -18,7 +18,6 @@ class AuthController extends Controller
             }
 
             Auth::login($user);
-
            
             return redirect('/')->with('success', 'Login berhasil!');
         } catch (\Throwable $th) {
