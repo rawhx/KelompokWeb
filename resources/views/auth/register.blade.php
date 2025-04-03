@@ -2,12 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     @include('components.head', ['title' => 'Register'])
     <body>
-        @if (session('error'))
-            <div class="alert alert-danger alert-dismissible fade show position-absolute" style="top: 20px;right: 30px;" role="alert">
-                <strong>Error!</strong>  {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+        @include('components.notif')
         <section class="vh-100 d-flex mx-4">
             <div class="container-fluid">
               <div class="row d-flex justify-content-center align-items-center h-100">
