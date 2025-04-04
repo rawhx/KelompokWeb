@@ -46,7 +46,7 @@
 
                         <div class="form-outline col-12">
                             <label class="form-label" for="path">Foto</label>
-                            <input type="file" id="path" name="path" class="form-control" accept="path/*">
+                            <input type="file" id="path" name="path" class="form-control" accept="image/*">
                         </div>
             
                         <button type="submit" class="btn btn-primary btn-lg col-12">Upload</button>                        
@@ -61,7 +61,7 @@
         </section>
     </body>
     <script>
-        document.getElementById('imageInput').addEventListener('change', function(event) {
+        document.getElementById('path').addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (file) {
                 const imgURL = URL.createObjectURL(file);
