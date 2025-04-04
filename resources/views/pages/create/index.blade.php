@@ -31,26 +31,31 @@
                     </div>
 
                
-                    <form action="{{route('updateProfil')}}" method="POST" class="row gap-3 w-100" enctype="multipart/form-data">
+                    <form action="{{route('storeImage')}}" method="POST" class="row gap-3 w-100" enctype="multipart/form-data">
                         @csrf
                        
                         <div class="form-outline col-12">
-                            <label class="form-label" for="email">Judul Foto</label>
-                            <input type="email" name="email" id="email" class="form-control form-control" placeholder="Judul Foto"/>
+                            <label class="form-label" for="judul">Judul Foto</label>
+                            <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul Foto"/>
                         </div>
                         
                         <div class="form-outline col-12">
                             <label class="form-label" for="deskripsi">Deskripsi</label>
-                            <textarea class="form-control" placeholder="Deskripsi foto" id="deskripsi" style="height: 100px"></textarea>
+                            <textarea class="form-control" placeholder="Deskripsi foto" name="deskripsi" id="deskripsi" style="height: 100px"></textarea>
                         </div>
 
                         <div class="form-outline col-12">
-                            <label class="form-label" for="username">Foto</label>
-                            <input type="file" id="imageInput" name="foto_profil" class="form-control" accept="image/*">
+                            <label class="form-label" for="path">Foto</label>
+                            <input type="file" id="path" name="path" class="form-control" accept="path/*">
                         </div>
             
                         <button type="submit" class="btn btn-primary btn-lg col-12">Upload</button>                        
                     </form>
+                    @if (session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </section>

@@ -15,9 +15,9 @@ Route::middleware(['auth'])->group(function () {
         return view('pages.create.index');
     })->name('create');
     Route::post('/create', [ImagesController::class, 'store'])->name('storeImage');
-    Route::get('/create/:id', [ImagesController::class, 'show'])->name('ShowImage');
-    Route::put('/create/:id', [ImagesController::class, 'update'])->name('UpdateImage');
-    Route::delete('/create/:id', [ImagesController::class, 'destroy'])->name('DestroyImage');
+    Route::get('/create/{id}', [ImagesController::class, 'show'])->name('ShowImage');
+    Route::put('/create/{id}', [ImagesController::class, 'update'])->name('UpdateImage');
+    Route::delete('/create/{id}', [ImagesController::class, 'destroy'])->name('DestroyImage');
     // end
 
     Route::get('/profil', function () {
