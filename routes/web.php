@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,9 +10,15 @@ Route::middleware(['auth'])->group(function () {
         return view('pages.home.index');
     })->name('home');
 
+    // upload foto
     Route::get('/create', function () {
         return view('pages.create.index');
     })->name('create');
+    Route::post('/create', [ImagesController::class, 'store'])->name('storeImage');
+    Route::get('/create/:id', [ImagesController::class, 'show'])->name('ShowImage');
+    Route::put('/create/:id', [ImagesController::class, 'update'])->name('UpdateImage');
+    Route::delete('/create/:id', [ImagesController::class, 'destroy'])->name('DestroyImage');
+    // end
 
     Route::get('/profil', function () {
         return view('pages.profile.index');
