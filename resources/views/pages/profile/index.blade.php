@@ -33,7 +33,41 @@
                             <i class="bi bi-pencil-square fs-2"></i>
                         </a>
                     </div>
-                    <div class="bg-danger w-100 vh-100"></div>
+                    <div class="bg-white w-100 vh-100">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped align-middle">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th style="width: 200px;">Judul</th>
+                                        <th style="width: 300px;">Deskripsi</th>
+                                        <th style="width: 150px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($images as $image)
+                                    <tr>
+                                        <td style="width: 200px; word-break: break-word;">
+                                           {{ $image->judul }} 
+                                        </td>
+                                        <td style="width: 300px; word-break: break-word;">
+                                            {{ $image->deskripsi }}
+                                        </td>
+                                        <td style="width: 150px;">
+                                            <div class="d-flex gap-2">
+                                                <a href="{{ route('ShowImage', $image->id)}}" class="btn btn-sm btn-warning">Edit</a>
+                                                <form action="{{ route('DestroyImage', $image->id) }}" method="POST" onsubmit="return confirm('Hapus gambar?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
