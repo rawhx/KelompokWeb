@@ -23,7 +23,7 @@
                     <div id="imagePreview" 
                         class="position-relative overflow-hidden d-block bg-danger" 
                         style="border-radius: 20px; width: max-content; max-width: 300px; height: auto;">
-                        <img src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=" 
+                        <img src="{{ asset('storage/images/' . $image->path) }}" 
                             id="previewImg" 
                             class="w-100"
                             style="height: auto; object-fit: contain; border-radius: inherit; max-height: 500px;"
@@ -41,12 +41,6 @@
                             <label class="form-label" for="deskripsi">Deskripsi Baru</label>
                             <input type="text" name="deskripsi" id="deskripsi" class="form-control form-control-lg" placeholder="Deskripsi">
                         </div>
-
-                        <div class="form-outline col-12">
-                            <label class="form-label" for="path">Gambar Baru</label>
-                            <input type="file" id="path" name="path" class="form-control" accept="image/*" required>
-                        </div>
-            
                         <button type="submit" class="btn btn-primary btn-lg col-12">Update File</button>                        
                     </form>
                 </div>

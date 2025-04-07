@@ -76,26 +76,11 @@ class ImagesController extends Controller
     {
         $request->validate
         ([
-            'judul',
-            'deskripsi',
-            'path'
+            'judul' => 'nullable|string|max:300',
+            'deskripsi' => 'nullable|string|max:3000',
         ]);
 
         $image = Image::findOrFail($id);
-
-        if($request->hasFile('path'))
-        {
-            $oldPath = public_path('storage/images'.$image->path);
-
-            if(file_exists($oldPath))
-            {
-                unlink($oldPath);
-            }
-
-            $imageName = time().'.'.$request->path->extension();
-            $request->path->move(public_path('storage/images'), $imageName);
-            $image->path = $imageName;
-        }
 
         $image->judul = $request->judul;
         $image->deskripsi = $request->deskripsi;
