@@ -34,12 +34,12 @@
                         @method('PUT')
                         <div class="form-outline col-12">
                             <label class="form-label" for="judul">Judul Baru</label>
-                            <input type="text" name="judul" id="judul" class="form-control form-control-lg" placeholder="Judul"/>
+                            <input type="text" name="judul" id="judul" class="form-control form-control-lg" placeholder="Judul" value="{{$image->judul}}"/>
                         </div>
 
                         <div class="form-outline col-12">
                             <label class="form-label" for="deskripsi">Deskripsi Baru</label>
-                            <input type="text" name="deskripsi" id="deskripsi" class="form-control form-control-lg" placeholder="Deskripsi">
+                            <textarea class="form-control" placeholder="Deskripsi foto" name="deskripsi" id="deskripsi" style="height: 100px">{{$image->deskripsi}}</textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-lg col-12">Update File</button>                        
                     </form>
