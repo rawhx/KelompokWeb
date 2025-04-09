@@ -56,6 +56,17 @@
                                                         class="w-100 h-100 rounded" 
                                                         style="object-fit: contain;">
                                                 </div>
+                                                <form method="POST" action="{{ route('toggleLike', $image->id) }}">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm {{ $image->isLikedBy(auth()->user()) ? 'btn-danger' : 'btn-outline-danger' }}">
+                                                        ❤️
+                                                        {{ $image->likes->count() }}
+                                                    </button>
+                                                </form>
+                                                <!-- <button data-id="{{ $image->id }}" class="like-button btn btn-sm {{ $image->isLikedBy(auth()->user()) ? 'btn-danger' : 'btn-outline-danger' }}">
+                                                    ❤️
+                                                    {{ $image->likes->count() }}
+                                                </button> -->
                                                 <div class="px-2">
                                                     <p class="m-0 mb-2 fs-5 fw-bold">{{ $image->judul }}</p>
                                                     <p class="m-0 text-truncate text-truncate d-block">{{ $image->deskripsi }}</p>
@@ -74,8 +85,26 @@
                         </div>
                         
                         <div id="liked" class="tab-section" style="display: none;">
-                            <div class="bg-info w-100" style="height: 200px;">
-                                <p class="text-white text-center pt-5">Konten Disukai</p>
+                            <div class="row g-3">
+                                @forelse ($likedImages as $image) 
+                                <div class="col-4">
+                                    <div class="card shadow border-0 p-3" style="max-width: 300px; overflow: hidden;">
+                                        <div class="card-body d-flex flex-column gap-3 p-0 h-100">
+                                            <div class="flex-shrink-0" style="height: 150px; overflow: hidden;">
+                                                <img src="{{ asset('storage/images/' . $image->path) }}"
+                                                    class="w-100 h-100 rounded"
+                                                    style="object-fit: contain;" alt="gambar disukai">
+                                            </div>
+                                            <div class="px-2">
+                                                <p class="m-0 mb-2 fs-5 fw-bold">{{ $image->judul }}</p>
+                                                <p class="m-0 text-truncate text-truncate d-block">{{ $image->deskripsi }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @empty
+                                <p class="text-center text-muted">Belum ada gambar yang disukai.</p>
+                                @endforelse
                             </div>
                         </div>
                         

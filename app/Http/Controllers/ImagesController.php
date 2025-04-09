@@ -13,8 +13,14 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        $images = Image::where('user_id', auth()->id())->get();
-        return(view('pages.profile.index', compact('images')));
+        // $images = Image::where('user_id', auth()->id())->get();
+        // return(view('pages.profile.index', compact('images')));
+
+        $user = auth()->user();
+        $images = Image::where('user_id', $user->id)->get();
+        $likedImages = $user->likes()->with('image')->get()->pluck('image');
+
+        return view('pages.profile.index', compact('user', 'images', 'likedImages'));
     }
 
     /**
@@ -106,4 +112,14 @@ class ImagesController extends Controller
 
         return redirect()->route('profil')->with('success', 'file berhasil dihapus!');
     }
+
+
+    // Show like amounts
+    // public function showLike() {
+    //     $user = auth()->user();
+    //     $images = collect();
+    //     $likedImages = $user->likes()->with('image')->get()->pluck('image');
+
+    //     return view('pages.profile.index', compact('user', 'images', 'likedImages'));
+    // }
 }

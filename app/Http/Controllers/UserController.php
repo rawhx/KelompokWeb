@@ -35,4 +35,5 @@ class UserController extends Controller
             return back()->with('error', 'Terjadi kesalahan, silakan coba lagi.')->withInput();   
         }
     }
+
 }
