@@ -1,0 +1,22 @@
+* {
+    font-family: "Source Sans 3", sans-serif;
+}
+
+.btn-primary {
+    background-color: #1700E6; /* warna biru baru */
+    border-color: #1e90ff;
+}
+
+.card {
+    border-radius: 32px;
+}
+
+.btn-outline-primary {
+    background-color: none; /* warna biru baru */
+    border-color: #1700E6;
+    color: #1700E6;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
