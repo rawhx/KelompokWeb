@@ -2,7 +2,18 @@
     font-family: "Source Sans 3", sans-serif;
 }
 
+.alert {
+    z-index: 10;
+}
+
+body {
+    min-height: 100vh;
+    display: flex; 
+    flex-direction: column;
+}
+
 section {
+    flex: 1;
     padding: 0 3rem;
 }
 

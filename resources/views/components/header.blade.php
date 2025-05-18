@@ -18,14 +18,14 @@
             <h3 class="fw-bold">{{ env('APP_NAME') }}{{ isset($title) ? ' | ' . $title : '' }}</h3>
         </div>
         <div class="nav flex-column flex-sm-row gap-2">
-            <a class="nav-link text-dark fs-5 fw-semibold active" href="#">Dashboard</a>
+            <a class="nav-link text-dark fs-5 fw-semibold active" href="/">Dashboard</a>
             <a class="nav-link text-dark fs-5 fw-semibold" href="#">Koleksi</a>
             <a class="nav-link text-dark fs-5 fw-semibold" href="#">Album</a>
             <a class="nav-link text-dark fs-5 fw-semibold" href="#">Suka</a>
         </div>
     </div>
     <div class="d-flex align-items-center gap-3">
-        <a href="{{ route('profil') }}" 
+        <a href="{{ route('profilPage') }}" 
             class="d-inline-block bg-primary position-relative overflow-hidden rounded-circle" 
             style="width: 40px; height: 40px;">
             
