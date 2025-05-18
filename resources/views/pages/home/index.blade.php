@@ -10,25 +10,23 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        <section class="d-flex">
-            @include('components.sidebar')
-            <div>
-                <div class="shadow-sm pb-3 px-3 position-sticky bg-white top-0" style="padding-top: 2.3em">
-                    <div class="px-3 d-flex gap-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search..." >
-                        </div>
-                        <a href="{{route('profil')}}" class="bg-info position-relative overflow-hidden" style="border-radius: 50%; width: 50px; height: 50px; aspect-ratio: 1/1;">
-                            <img src="{{ auth()->user()->foto_profil ? asset('storage/profile_pictures/' . auth()->user()->foto_profil) : 'https://via.placeholder.com/150' }}" class="w-100 h-100 position-absolute top-0 start-0" 
-                            style="object-fit: cover; object-position: center;" 
-                            alt="profil">
-                        </a>
+        @include('components.header')
+        <section class="d-flex flex-column gap-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="font-semibold heading-underline">Dashboard</h4>
+                <button class="btn btn-outline-dark fw-semibold">Tambah Postingan</button>
+            </div>
+            <div class="bento-grid">
+                @foreach (range(1, 200) as $item)
+                    @php
+                        $width = rand(150, 400);
+                        $height = rand(150, 300);
+                    @endphp
+                    <div class="bento-item">
+                        <img src="https://placehold.jp/{{ $width }}x{{ $height }}.png" alt="Foto {{ $item }}">
                     </div>
-                </div>
-        
-                <div class="pb-3 pt-4 px-3 d-flex flex-column gap-3">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima sint amet quod doloribus quidem eos, velit temporibus suscipit sapiente molestiae provident ducimus cupiditate repellendus est incidunt, magni a earum reprehenderit!
-                </div>
+                @endforeach
+
             </div>
         </section>
     </body>
