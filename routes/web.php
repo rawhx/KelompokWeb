@@ -27,13 +27,6 @@ Route::middleware(['auth'])->group(function () {
         return view('pages.profile.index');
     })->name('profilPage');
 
-    // Baru
-    // Route::get('/profil', [ImagesController::class, 'index'])->name('profil');
-
-    // Route::get('/profil/edit', function () {
-    //     return view('pages.profile.edit');
-    // })->name('editProfil');
-
     // Liked Controller
     Route::post('/like/{imageId}', [LikeController::class, 'toggle'])->name('toggleLike');
     

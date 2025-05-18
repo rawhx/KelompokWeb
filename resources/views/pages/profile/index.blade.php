@@ -11,7 +11,7 @@
     <body>
         @include('components.notif')
         @include('components.header')
-        <section class="d-flex flex-column flex-grow-1">
+        <section class="d-flex flex-column">
             <div class="d-flex justify-content-between align-items-center">
                 <h4 class="font-semibold heading-underline">Profile</h4>
                 <button class="btn btn-outline-dark fw-semibold" data-bs-toggle="modal" data-bs-target="#editProfile">Edit Profile</button>
