@@ -43,7 +43,7 @@ class AuthController extends Controller
 
             return redirect(route('loginPage'))->with('success', 'Registrasi berhasil! Silakan login.');
         } catch (\Throwable $th) {
-            return back()->with('error', 'Username atau Email tidak tersedia, silakan coba lagi.')->withInput();
+            return back()->with('error', 'Gagal melakukan registrasi.')->withInput();
         }
     }
 }
