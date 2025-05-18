@@ -13,7 +13,14 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        //
+        // $images = Image::where('user_id', auth()->id())->get();
+        // return(view('pages.profile.index', compact('images')));
+
+        $user = auth()->user();
+        $images = Image::where('user_id', $user->id)->get();
+        $likedImages = $user->likes()->with('image')->get()->pluck('image');
+
+        return view('pages.profile.index', compact('user', 'images', 'likedImages'));
     }
 
     /**
@@ -33,7 +40,7 @@ class ImagesController extends Controller
         ([
             'judul' => 'required|string|max:300',
             'deskripsi' => 'nullable|string|max:3000',
-            'path' => 'required|mimes:png, jpg, jpeg, webp|max:1080'
+            'path' => 'required|mimes:png,jpg,jpeg,webp|max:1080'
         ]);
 
         $imageName = time().'.'.$request->path->extension();
@@ -55,7 +62,8 @@ class ImagesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $image = Image::findOrFail($id);
+        return view('pages.profile.update-image', compact('image'));
     }
 
     /**
@@ -63,7 +71,8 @@ class ImagesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $image = Image::findOrFail($id);
+        return view('pages.profile.update-image', compact('image'));
     }
 
     /**
@@ -71,7 +80,19 @@ class ImagesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate
+        ([
+            'judul' => 'nullable|string|max:300',
+            'deskripsi' => 'nullable|string|max:3000',
+        ]);
+
+        $image = Image::findOrFail($id);
+
+        $image->judul = $request->judul;
+        $image->deskripsi = $request->deskripsi;
+        $image->save();
+
+        return redirect()->route('profil')->with('success', 'file berhasil diedit!');
     }
 
     /**
@@ -79,6 +100,26 @@ class ImagesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $image = Image::findOrFail($id);
+
+        $imagePath = public_path('storage/images'.$image->path);
+        if(file_exists($imagePath))
+        {
+            unlink($imagePath);
+        }
+
+        $image->delete();
+
+        return redirect()->route('profil')->with('success', 'file berhasil dihapus!');
     }
+
+
+    // Show like amounts
+    // public function showLike() {
+    //     $user = auth()->user();
+    //     $images = collect();
+    //     $likedImages = $user->likes()->with('image')->get()->pluck('image');
+
+    //     return view('pages.profile.index', compact('user', 'images', 'likedImages'));
+    // }
 }

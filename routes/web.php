@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LikeController;
+use App\Models\Image;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
@@ -20,14 +22,20 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/create/{id}', [ImagesController::class, 'destroy'])->name('DestroyImage');
     // end
 
-    Route::get('/profil', function () {
-        return view('pages.profile.index');
-    })->name('profil');
+    // Route::get('/profil', function () {
+    //     return view('pages.profile.index');
+    // })->name('profil');
+
+    // Baru
+    Route::get('/profil', [ImagesController::class, 'index'])->name('profil');
 
     Route::get('/profil/edit', function () {
         return view('pages.profile.edit');
     })->name('editProfil');
 
+    // Liked Controller
+    Route::post('/like/{imageId}', [LikeController::class, 'toggle'])->name('toggleLike');
+    
     Route::post('/profil/edit', [UserController::class, 'update'])->name('updateProfil');
 });
 

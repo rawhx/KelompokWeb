@@ -9,8 +9,7 @@
             @include('components.sidebar')
             <div class="vw-100">
                 <div class="shadow-sm pb-3 px-3 position-sticky bg-white top-0" style="padding-top: 2.3em">
-                    <div class="px-3 d-flex justify-content-between align-items-center gap-3">
-                        <h5>Upload Foto</h5>
+                    <div class="px-3 d-flex justify-content-end gap-3">
                         <a href="{{route('profil')}}" class="bg-info position-relative overflow-hidden" style="border-radius: 50%; width: 50px; height: 50px; aspect-ratio: 1/1;">
                             <img src="{{ auth()->user()->foto_profil ? asset('storage/profile_pictures/' . auth()->user()->foto_profil) : 'https://via.placeholder.com/150' }}" class="w-100 h-100 position-absolute top-0 start-0" 
                             style="object-fit: cover; object-position: center;" 
@@ -18,46 +17,33 @@
                         </a>
                     </div>
                 </div>
-        
-                <div class="pb-3 pt-4 px-3 d-flex gap-5 align-items-start">
+
+                
+                <div class="pb-3 pt-4 px-3 d-flex gap-5 align-items-center">
                     <div id="imagePreview" 
                         class="position-relative overflow-hidden d-block bg-danger" 
                         style="border-radius: 20px; width: max-content; max-width: 300px; height: auto;">
-                        <img src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=" 
+                        <img src="{{ asset('storage/images/' . $image->path) }}" 
                             id="previewImg" 
                             class="w-100"
                             style="height: auto; object-fit: contain; border-radius: inherit; max-height: 500px;"
                             alt="preview">
                     </div>
-
-               
-                    <form action="{{route('storeImage')}}" method="POST" class="row gap-3 w-100" enctype="multipart/form-data">
+                    <form action="{{route('UpdateImage', $image->id)}}" method="POST" class="row gap-3 w-100" enctype="multipart/form-data">
                         @csrf
-                       
+                        @method('PUT')
                         <div class="form-outline col-12">
-                            <label class="form-label" for="judul">Judul Foto</label>
-                            <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul Foto"/>
-                        </div>
-                        
-                        <div class="form-outline col-12">
-                            <label class="form-label" for="deskripsi">Deskripsi</label>
-                            <textarea class="form-control" placeholder="Deskripsi foto" name="deskripsi" id="deskripsi" style="height: 100px"></textarea>
+                            <label class="form-label" for="judul">Judul Baru</label>
+                            <input type="text" name="judul" id="judul" class="form-control form-control-lg" placeholder="Judul" value="{{$image->judul}}"/>
                         </div>
 
                         <div class="form-outline col-12">
-                            <label class="form-label" for="path">Foto</label>
-                            <input type="file" id="path" name="path" class="form-control" accept="image/*">
+                            <label class="form-label" for="deskripsi">Deskripsi Baru</label>
+                            <textarea class="form-control" placeholder="Deskripsi foto" name="deskripsi" id="deskripsi" style="height: 100px">{{$image->deskripsi}}</textarea>
                         </div>
-            
-                        <button type="submit" class="btn btn-primary btn-lg col-12">Upload</button>                        
+                        <button type="submit" class="btn btn-primary btn-lg col-12">Update File</button>                        
                     </form>
-                    @if (session()->has('message'))
-                        <div class="alert alert-success">
-                            {{ session()->get('message') }}
-                        </div>
-                    @endif
                 </div>
-            </div>
         </section>
     </body>
     <script>
