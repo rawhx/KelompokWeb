@@ -26,6 +26,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profil', function () {
         return view('pages.profile.index');
     })->name('profilPage');
+    
+    Route::get('/like', function () {
+        return view('pages.like.index');
+    })->name('likePage');
 
     // Liked Controller
     Route::post('/like/{imageId}', [LikeController::class, 'toggle'])->name('toggleLike');

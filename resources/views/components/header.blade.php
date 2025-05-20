@@ -21,11 +21,11 @@
             <a class="nav-link text-dark fs-5 fw-semibold active" href="/">Dashboard</a>
             <a class="nav-link text-dark fs-5 fw-semibold" href="#">Koleksi</a>
             <a class="nav-link text-dark fs-5 fw-semibold" href="#">Album</a>
-            <a class="nav-link text-dark fs-5 fw-semibold" href="#">Suka</a>
+            <a class="nav-link text-dark fs-5 fw-semibold" href="{{ route('likePage') }}">Suka</a>
         </div>
     </div>
-    <div class="d-flex align-items-center gap-3">
-        <a href="{{ route('profilPage') }}" 
+    <a href="{{ route('profilPage') }}" class="d-flex text-dark align-items-center gap-3">
+        <div  
             class="d-inline-block bg-primary position-relative overflow-hidden rounded-circle" 
             style="width: 40px; height: 40px;">
             
@@ -35,7 +35,7 @@
                 class="w-100 h-100 position-absolute top-0 start-0" 
                 style="object-fit: cover; object-position: center;" 
                 alt="Profil">  
-        </a>
+        </div>
         <i class="bi bi-chevron-left" style="transform: rotate(-90deg); display: inline-block;"></i>
-    </div>
+    </a>
 </div>
