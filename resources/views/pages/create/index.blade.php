@@ -18,10 +18,10 @@
                         <img src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=" 
                             id="previewImg" 
                             class="w-100"
-                            style="height: auto; object-fit: contain; border-radius: inherit; max-height: 500px;"
+                            style="height: auto; object-fit: contain; border-radius: 20px; max-height: 500px;"
                             alt="preview">
                     </div>
-                    <form action="" method="POST" class="row col-12 gap-3 w-100" enctype="multipart/form-data">
+                    <form action="{{ route('storeImage') }}" method="POST" class="row col-12 gap-3 w-100" enctype="multipart/form-data">
                         @csrf
                         
                         <div class="form-outline col-12">
@@ -35,7 +35,8 @@
                         </div>
     
                         <div class="d-flex gap-2">
-                            <button class="btn btn-outline-primary px-3 py-2" for="path">Pilih Gambar</button>
+                            <input type="file" name="path" id="path" class="form-control d-none" accept="image/*">
+                            <label for="path" class="btn btn-outline-primary px-3 py-2">Pilih Gambar</label>
                             <button type="submit" class="btn btn-primary px-3 py-2">Upload</button>                        
                         </div>
                     </form>
@@ -43,4 +44,20 @@
             </div>
         </section>
     </body>
+    <script>
+        document.getElementById('customFileBtn').addEventListener('click', function () 
+        {
+            document.getElementById('path').click();
+        });
+
+        document.getElementById('path').addEventListener('change', function(event) 
+        {
+            const file = event.target.files[0];
+            if (file) 
+            {
+                const imgURL = URL.createObjectURL(file);
+                document.getElementById('previewImg').src = imgURL;
+            }
+        });
+    </script>
 </html>
