@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/like/{imageId}', [LikeController::class, 'toggle'])->name('toggleLike');
     
     Route::post('/profil/edit', [UserController::class, 'update'])->name('updateProfil');
+    Route::delete('/profil', [UserController::class, 'deleteAkun'])->name('deleteProfil');
 });
 
 Route::middleware(['guest'])->group(function () {
