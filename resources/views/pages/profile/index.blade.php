@@ -31,37 +31,40 @@
                 </div>  
                 <div class="d-flex gap-2">
                     <button class="px-5 btn btn-outline-danger" onclick="logout()">Logout</button>
-                    <button class="px-5 btn btn-danger">Hapus Akun</button>
+                    <button class="px-5 btn btn-danger" onclick="deleteAkun()">Hapus Akun</button>
                 </div>
             </div>
         </section>
         <div class="modal fade" id="editProfile" data-bs-backdrop="static" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="editProfileLabel">Edit Profile</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form class="row g-3">
-                        <div class="col-12">
-                          <label class="visually">Email</label>
-                          <input type="text" readonly class="form-control" value="{{auth()->user()->email}}">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="editProfileLabel">Edit Profile</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{{route('updateProfil')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="visually">Email</label>
+                                    <input type="text" readonly class="form-control" value="{{auth()->user()->email}}">
+                                </div>
+                                <div class="col-12">
+                                    <label class="visually">Username</label>
+                                    <input type="text" name="username" class="form-control" value="{{auth()->user()->username}}">
+                                </div>
+                                <div class="col-12">
+                                    <label for="foto_profil" class="form-label">Profile</label>
+                                    <input class="form-control" type="file" name="foto_profil" id="foto_profil" accept="image/*">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12">
-                          <label class="visually">Username</label>
-                          <input type="text" name="username" class="form-control" value="{{auth()->user()->username}}">
-                        </div>
-                        <div class="col-12">
-                            <label for="foto_profil" class="form-label">Profile</label>
-                            <input class="form-control" type="file" id="foto_profil" accept="image/*">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary">Simpan</button>
-                </div>
                 </div>
             </div>
         </div>
@@ -71,6 +74,26 @@
     <script>
         function logout() { 
             window.location.href = "/logout";
+        }
+
+        function deleteAkun() { 
+            if (!confirm("Apakah Anda yakin ingin menghapus akun ini? Tindakan ini tidak dapat dibatalkan.")) {
+                return;
+            }
+
+            $.ajax({
+                type: "DELETE",
+                url: "/profil",
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                success: function (response) {
+                    window.location.href = "/login";
+                },
+                error: function (xhr, status, error) {
+                    alert("Gagal menghapus akun.");
+                }
+            });
         }
 
         const tabs = document.querySelectorAll('.tab-button');
