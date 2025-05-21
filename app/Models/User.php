@@ -33,7 +33,6 @@ class User extends Authenticatable
         'password',
     ];
 
-    // Kode editan faiz
     public function likes() {
         return $this->hasMany(Like::class);
     }

@@ -11,13 +11,19 @@
                 <h4 class="font-semibold heading-underline">Postingan yang disukai</h4>
             </div>
             <div class="bento-grid">
-                @foreach (range(1, 200) as $item)
+                @foreach ($likedImages as $image)
                     @php
                         $width = rand(150, 400);
                         $height = rand(150, 300);
                     @endphp
                     <div class="bento-item">
-                        <img src="https://placehold.jp/{{ $width }}x{{ $height }}.png" alt="Foto {{ $item }}">
+                        <a href="{{ route('detailPost', $image->id) }}">
+                            <img src="{{ asset('storage/images/' . $image->path) }}" alt="Foto {{ $image->judul }}">
+
+                            <div class="overlay">
+                                <span class="image-title">{{ $image->judul }}</span>
+                            </div>
+                        </a>
                     </div>
                 @endforeach
 
