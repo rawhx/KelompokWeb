@@ -9,7 +9,7 @@
         <section class="d-flex flex-column gap-3">
             <div class="d-flex justify-content-between align-items-center">
                 <h4 class="font-semibold heading-underline">Dashboard</h4>
-                <button class="btn btn-outline-dark fw-semibold">Tambah Postingan</button>
+                <a href="{{ route('createPage') }}" class="btn btn-outline-dark fw-semibold">Tambah Postingan</a>
             </div>
             <div class="bento-grid">
                 @foreach ($images as $image)

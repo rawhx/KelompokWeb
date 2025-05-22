@@ -18,9 +18,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [ImagesController::class, 'showHome'])->name('home');
     
     // upload foto
-    Route::get('/create', function () {
+    Route::get('/add-postingan', function () {
         return view('pages.create.index');
-    })->name('create');
+    })->name('createPage');
     Route::post('/create', [ImagesController::class, 'store'])->name('storeImage');
     Route::get('/create/{id}', [ImagesController::class, 'show'])->name('ShowImage');
     Route::put('/create/{id}', [ImagesController::class, 'update'])->name('UpdateImage');
