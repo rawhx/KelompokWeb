@@ -13,14 +13,10 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        // $images = Image::where('user_id', auth()->id())->get();
-        // return(view('pages.profile.index', compact('images')));
-
         $user = auth()->user();
         $images = Image::where('user_id', $user->id)->get();
-        $likedImages = $user->likes()->with('image')->get()->pluck('image');
 
-        return view('pages.profile.index', compact('user', 'images', 'likedImages'));
+        return view('pages.profile.index', compact('user', 'images'));
     }
 
     /**
@@ -54,7 +50,7 @@ class ImagesController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
-        return redirect()->route('profil')->with('success', 'file berhasil ditambahkan!');
+        return redirect()->route('home')->with('success', 'file berhasil ditambahkan!');
     }
 
     /**
@@ -113,13 +109,15 @@ class ImagesController extends Controller
         return redirect()->route('profil')->with('success', 'file berhasil dihapus!');
     }
 
+    // Menampilkan detail post
+    public function showPost($id) {
+        $image = Image::with(['comments.user', 'likes'])->findOrFail($id);
+        return view('pages.post.index', compact('image'));
+    }
 
-    // Show like amounts
-    // public function showLike() {
-    //     $user = auth()->user();
-    //     $images = collect();
-    //     $likedImages = $user->likes()->with('image')->get()->pluck('image');
-
-    //     return view('pages.profile.index', compact('user', 'images', 'likedImages'));
-    // }
+    // Menampilkan gambar-gambar pada dashboard
+    public function showHome() {
+        $images = Image::with('user')->latest()->paginate(10);
+        return view('pages.home.index', compact('images'));
+    }
 }
