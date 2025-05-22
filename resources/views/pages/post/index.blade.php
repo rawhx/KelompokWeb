@@ -22,14 +22,16 @@
                         alt="Profil">  
                     </div>
                     <strong>{{ $image->user->username }}</strong>
-                    <div class="ms-auto d-flex gap-2">
-                        <a href="{{ route('editImage', $image->id) }}" class="btn btn-sm bg-transparent border-0 text-primary" style="outline: none;">Edit</a>
-                        <form action="{{ route('DestroyImage', $image->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"class="btn btn-sm btn-danger border-0" style="outline: none;">Hapus</button>
-                        </form>
-                    </div>
+                    @if($image->user_id === auth()->id())
+                        <div class="ms-auto d-flex gap-2">
+                            <a href="{{ route('editImage', $image->id) }}" class="btn btn-sm bg-transparent border-0 text-primary" style="outline: none;">Edit</a>
+                            <form action="{{ route('DestroyImage', $image->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"class="btn btn-sm btn-danger border-0" style="outline: none;">Hapus</button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
 
                 {{-- Main Image --}}
