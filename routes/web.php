@@ -23,7 +23,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('createPage');
     Route::post('/create', [ImagesController::class, 'store'])->name('storeImage');
     Route::get('/create/{id}', [ImagesController::class, 'show'])->name('ShowImage');
-    Route::put('/create/{id}', [ImagesController::class, 'update'])->name('UpdateImage');
+    Route::put('/edit-postingan/{id}', [ImagesController::class, 'update'])->name('UpdateImage');
     Route::delete('/create/{id}', [ImagesController::class, 'destroy'])->name('DestroyImage');
     // end
 
@@ -42,7 +42,11 @@ Route::middleware(['auth'])->group(function () {
 
     // Detail post
     Route::get('/post/{id}', [ImagesController::class, 'showPost'])->name('detailPost');
-    
+
+    // Edit postingan
+    Route::get('/editfoto/{id}', [ImagesController::class, 'edit'])->name('editImage');
+
+
     Route::post('/profil/edit', [UserController::class, 'update'])->name('updateProfil');
     Route::delete('/profil', [UserController::class, 'deleteAkun'])->name('deleteProfil');
 });
