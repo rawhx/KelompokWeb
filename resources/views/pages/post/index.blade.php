@@ -16,7 +16,7 @@
                 <div class="d-flex gap-2 align-items-center">
                     <div class="d-inline-block bg-primary position-relative overflow-hidden rounded-circle" 
                         style="width: 40px; height: 40px;">
-                        <img src="{{ asset('storage/profile_pictures/' . $image->user->foto_profil) }}" 
+                        <img src="{{ !$image->user->foto_profil  ? 'https://sussexunipharmacy.co.uk/wp-content/uploads/2024/02/no-profile-img.jpg' : asset('storage/profile_pictures/' . $image->user->foto_profil) }}" 
                         class="w-100 h-100 position-absolute top-0 start-0" 
                         style="object-fit: cover; object-position: center;" 
                         alt="Profil">  
