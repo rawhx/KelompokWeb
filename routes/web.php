@@ -49,6 +49,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/profil/edit', [UserController::class, 'update'])->name('updateProfil');
     Route::delete('/profil', [UserController::class, 'deleteAkun'])->name('deleteProfil');
+
+    Route::get('/album', function () {
+        return view('pages.album.index');
+    })->name('albumPage');
+    Route::get('/album/add', function () {
+        return view('pages.album.add');
+    })->name('albumAddPage');
 });
 
 Route::middleware(['guest'])->group(function () {
