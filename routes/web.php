@@ -14,9 +14,9 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/', function () {
     //     return view('pages.home.index');
     // })->name('home');
-    
+
     Route::get('/', [ImagesController::class, 'showHome'])->name('home');
-    
+
     // upload foto
     Route::get('/add-postingan', function () {
         return view('pages.create.index');
@@ -30,8 +30,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profil', function () {
         return view('pages.profile.index');
     })->name('profilPage');
-    
-    // Like 
+
+    // Like
     Route::post('/like/{imageId}', [LikeController::class, 'toggle'])->name('toggleLike');
     Route::get('/like', [LikeController::class, 'index'])->name('likePage');
 
@@ -50,12 +50,21 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profil/edit', [UserController::class, 'update'])->name('updateProfil');
     Route::delete('/profil', [UserController::class, 'deleteAkun'])->name('deleteProfil');
 
+    // Album
     Route::get('/album', function () {
         return view('pages.album.index');
     })->name('albumPage');
     Route::get('/album/add', function () {
         return view('pages.album.add');
     })->name('albumAddPage');
+
+    // Koleksi
+    Route::get('/koleksi', function () {
+        return view('pages.koleksi.index');
+    })->name('koleksiPage');
+    Route::get('/koleksi/add', function () {
+        return view('pages.koleksi.add');
+    })->name('koleksiAddPage');
 });
 
 Route::middleware(['guest'])->group(function () {
@@ -65,7 +74,7 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/register', function () {
         return view('auth.register');
     })->name('registerPage');
-    
+
     Route::post('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
 });
