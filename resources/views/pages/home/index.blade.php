@@ -13,10 +13,6 @@
             </div>
             <div class="bento-grid">
                 @foreach ($images as $image)
-                    @php
-                        $width = rand(150, 400);
-                        $height = rand(150, 300);
-                    @endphp
                     <div class="bento-item">
                         <a href="{{ route('detailPost', $image->id) }}">
                             <img src="{{ asset('storage/images/' . $image->path) }}" alt="Foto {{ $image->judul }}">
