@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\KoleksiController;
 use App\Http\Controllers\LikeController;
 use App\Models\Image;
 use App\Models\Post;
@@ -56,6 +57,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/album/add', function () {
         return view('pages.album.add');
     })->name('albumAddPage');
+
+
+
+    Route::get('/koleksi', [KoleksiController::class, 'index'])->name('koleksiPage');
+    Route::get('/koleksi/add', [KoleksiController::class, 'dataFotoKoleksi'])->name('koleksiAddPage');
+    Route::post('/koleksi/add', [KoleksiController::class, 'store'])->name('koleksiAdd');
+    Route::get('/koleksi/{id}/edit', [KoleksiController::class, 'edit'])->name('koleksiEdit');
+    Route::put('/koleksi/{id}', [KoleksiController::class, 'update'])->name('koleksiUpdate');
+    Route::delete('/koleksi/delete', [KoleksiController::class, 'delete'])->name('koleksiDelete');
 });
 
 Route::middleware(['guest'])->group(function () {

@@ -19,7 +19,7 @@
         </div>
         <div class="nav flex-column flex-sm-row gap-2">
             <a class="nav-link text-dark fs-5 fw-semibold active" href="/">Dashboard</a>
-            <a class="nav-link text-dark fs-5 fw-semibold" href="#">Koleksi</a>
+            <a class="nav-link text-dark fs-5 fw-semibold" href="{{ route('koleksiPage') }}">Koleksi</a>
             <a class="nav-link text-dark fs-5 fw-semibold" href="{{ route('albumPage') }}">Album</a>
             <a class="nav-link text-dark fs-5 fw-semibold" href="{{ route('likePage') }}">Suka</a>
         </div>
