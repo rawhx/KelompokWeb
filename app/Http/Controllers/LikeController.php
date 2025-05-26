@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Like;
 use App\Models\Image;
 
 class LikeController extends Controller {
-    public function toggle(Request $request, $imageID) {
+    public function toggle($imageId) {
         $user = auth()->user();
 
         $like = Like::where('user_id', $user->id)
-                    ->where('image_id', $imageID)
+                    ->where('image_id', $imageId)
                     ->first();
 
         if ($like) {
@@ -19,7 +18,7 @@ class LikeController extends Controller {
         } else {
             Like::create([
                 'user_id' => $user->id,
-                'image_id' => $imageID,
+                'image_id' => $imageId,
             ]);
         }
 
