@@ -93,7 +93,7 @@ class ImagesController extends Controller
             $image->judul = $request->judul;
             $image->deskripsi = $request->deskripsi;
             $image->save();
-            return redirect()->route('home')->with('success', 'file berhasil diedit!');
+            return redirect()->route('detailPost', $image->id)->with('success', 'file berhasil diedit!');
         } catch (\Throwable $th) {
             return back()->with('success', 'file gagal diedit!');
         }
