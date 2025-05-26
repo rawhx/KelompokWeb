@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\UserController;
@@ -58,7 +59,12 @@ Route::middleware(['auth'])->group(function () {
         return view('pages.album.add');
     })->name('albumAddPage');
 
-
+    Route::get('/album', [AlbumController::class, 'index'])->name('albumPage');
+    Route::get('/album/add', [AlbumController::class, 'dataFotoAdd'])->name('albumAddPage');
+    Route::post('/album/add', [AlbumController::class, 'store'])->name('albumAdd');
+    Route::delete('/album', [AlbumController::class, 'delete'])->name('albumDelete');
+    Route::get('/album/{id}/edit', [AlbumController::class, 'edit'])->name('albumEdit');
+    Route::put('/album/{id}/update', [AlbumController::class, 'update'])->name('albumUpdate');
 
     Route::get('/koleksi', [KoleksiController::class, 'index'])->name('koleksiPage');
     Route::get('/koleksi/add', [KoleksiController::class, 'dataFotoKoleksi'])->name('koleksiAddPage');
