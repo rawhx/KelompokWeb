@@ -42,7 +42,7 @@
                         @csrf
                         <div class="col-12">
                             <label class="form-label" for="judul">Judul</label>
-                            <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul Foto" />
+                            <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul Koleksi" />
                         </div>
 
                         <input type="hidden" name="selected_images" id="selectedImages">
@@ -125,7 +125,6 @@
 
                     $('#staticBackdrop').modal('hide');
                 });
-
                 $('.btn-close, .btn-secondary').on('click', function () {
                     $('.selectable').each(function () {
                         const $item = $(this);

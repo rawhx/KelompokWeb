@@ -20,48 +20,43 @@
         @include('components.header')
         <section class="d-flex flex-column gap-3">
             <div class="d-flex justify-content-between align-items-center">
-                <h4 class="font-semibold heading-underline">Tambah Koleksi</h4>
+                <h4 class="font-semibold heading-underline">Tambah Album</h4>
             </div>
             <div class="d-flex justify-content-center">
                 <div class="container position-sticky top-0 py-3" style="max-width: 50%;">
                     <!-- Grid Gambar -->
                     @php
-                        $koleksiImages = $koleksi->data ?? [];
+                        $albumImages = $album->data ?? [];
                         $oldSelected = old('selected_images') 
                             ? explode(',', old('selected_images')) 
                             : $selectedImageIds;
                     @endphp
 
                     <div class="bento-grid" style="column-count: 3">
-                        @foreach (range(0, 2) as $i)
+                        @foreach (range(0, 3) as $i)
                             @php
-                                $imagePath = isset($koleksiImages[$i]) ? $koleksiImages[$i]->image->path : null;
+                                $imagePath = isset($albumImages[$i]) ? $albumImages[$i]->image->path : null;
                             @endphp
                             <div class="bento-item">
-                                <img
-                                    src="{{ $imagePath ? asset('storage/images/' . $imagePath) : 'https://placehold.jp/300x300.png' }}"
-                                    alt="Foto {{ $i + 1 }}"
-                                    id="foto_{{ $i }}"
-                                    class="img-fluid rounded shadow-sm"
-                                    style="max-width: 15rem;"
-                                >
+                                <img src="{{ $imagePath ? asset('storage/images/' . $imagePath) : 'https://placehold.jp/300x300.png' }}" alt="Foto {{ $i + 1 }}" id="foto_{{ $i }}" class="img-fluid rounded shadow-sm" style="max-width: 15rem;">
                             </div>
                         @endforeach
                     </div>
 
-                    <form action="{{route('koleksiUpdate', $koleksi->id)}}" method="POST" class="row g-3 mt-3" enctype="multipart/form-data">
+                    <!-- Form Upload -->
+                    <form action="{{ route('albumUpdate', $album->id) }}" method="POST" class="row g-3 mt-3" enctype="multipart/form-data">
                         @csrf
                         @method("PUT")
                         <div class="col-12">
                             <label class="form-label" for="judul">Judul</label>
-                            <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul Foto" value="{{$koleksi->koleksi_nama}}" />
+                            <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul Album" value="{{ $album->album_nama }}" />
                         </div>
 
-                        <input type="hidden" name="id" value="{{ $koleksi->id }}">
+                        <input type="hidden" name="id" value="{{ $album->id }}">
                         <input type="hidden" name="selected_images" id="selectedImages" value="{{ implode(',', $oldSelected) }}">
 
                         <div class="col-12 d-flex gap-2">
-                            <button type="button" class="btn btn-outline-primary"  type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Pilih Gambar</button>
+                            <button type="button" class="btn btn-outline-primary"  type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Pilih Gambar</button>
                             <button type="submit" class="btn btn-primary">Upload</button>
                         </div>
                     </form>
@@ -166,6 +161,5 @@
                 });
             });
         </script>
-
     </body>
 </html>
