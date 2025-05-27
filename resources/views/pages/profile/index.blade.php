@@ -77,21 +77,29 @@
         }
 
         function deleteAkun() { 
-            if (!confirm("Apakah Anda yakin ingin menghapus akun ini? Tindakan ini tidak dapat dibatalkan.")) {
-                return;
-            }
-
-            $.ajax({
-                type: "DELETE",
-                url: "/profil",
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                },
-                success: function (response) {
-                    window.location.href = "/login";
-                },
-                error: function (xhr, status, error) {
-                    alert("Gagal menghapus akun.");
+            Swal.fire({
+                title: "Hapus Akun",
+                text: "Apakah Anda yakin ingin menghapus akun ini?",
+                icon: "danger",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, hapus!!"
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: "/profil",
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        success: function (response) {
+                            window.location.href = "/login";
+                        },
+                        error: function (xhr, status, error) {
+                            alert("Gagal menghapus akun.");
+                        }
+                    });
                 }
             });
         }
