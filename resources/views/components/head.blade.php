@@ -19,6 +19,8 @@
         <!-- Jquery -->
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <link rel="icon" href="/assets/images/icon.png" sizes="128x128" type="pinspire">
         <link rel="stylesheet" href="/assets/css/style.css">
 </head>
