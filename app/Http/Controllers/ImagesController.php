@@ -119,13 +119,13 @@ class ImagesController extends Controller
 
     // Menampilkan detail post
     public function showPost($id) {
-        $image = Image::with(['comments.user', 'likes'])->findOrFail($id);
+        $image = Image::with(['user','comments.user', 'likes'])->findOrFail($id);
         return view('pages.post.index', compact('image'));
     }
 
     // Menampilkan gambar-gambar pada dashboard
     public function showHome() {
-        $images = Image::with('user')->latest()->paginate(10);
+        $images = Image::with('user')->latest()->get();
         return view('pages.home.index', compact('images'));
     }
 }
