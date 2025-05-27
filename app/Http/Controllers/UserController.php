@@ -31,7 +31,6 @@ class UserController extends Controller
 
                 // Simpan ke database
                 $user->foto_profil = $imageName;  // Simpan nama gambar di database
-                $user->save();  // Simpan perubahan user
             }
             $user->save();
     
