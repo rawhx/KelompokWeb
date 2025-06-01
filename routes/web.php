@@ -57,6 +57,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/album', [AlbumController::class, 'index'])->name('albumPage');
     Route::get('/album/add', [AlbumController::class, 'dataFotoAdd'])->name('albumAddPage');
+    Route::get('/album/detail/{id}', [AlbumController::class, 'detailAlbum'])->name('albumDetailPage');
+    Route::get('/album/detail', [AlbumController::class, 'detailAlbumDefault'])->name('albumDetailDefaultPage');
     Route::post('/album/add', [AlbumController::class, 'store'])->name('albumAdd');
     Route::delete('/album', [AlbumController::class, 'delete'])->name('albumDelete');
     Route::get('/album/{id}/edit', [AlbumController::class, 'edit'])->name('albumEdit');

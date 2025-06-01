@@ -21,12 +21,9 @@
                             <a href="{{ route('koleksiEdit', $koleksi->id) }}" class="btn text-secondary p-0 text-decoration-none">Edit</a>
 
                             {{-- Tombol Hapus --}}
-                            <form action="{{ route('koleksiDelete') }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus koleksi ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <input type="hidden" name="id" value="{{ $koleksi->id }}">
-                                <button type="submit" class="btn text-danger p-0 text-decoration-none">Hapus</button>
-                            </form>
+                            <button onclick="deleteKoleksi({{ $koleksi->id }})" class="btn text-danger p-0 text-decoration-none">
+                                Hapus
+                            </button>
                         </div>
                     </div>
 
@@ -49,5 +46,39 @@
 
             </div>
         </section>
+
+        <script>
+            function deleteKoleksi(id) {
+                Swal.fire({
+                    title: "Hapus koleksi",
+                    text: "Apakah Anda yakin ingin menghapus koleksi ini?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `/koleksi/delete`,
+                            type: "POST",
+                            data: {
+                                id: id,
+                                _method: "DELETE",
+                                _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                            },
+                            success: function(response) {
+                                Swal.fire("Berhasil!", "Koleksi telah dihapus.", "success").then(() => {
+                                    window.location.reload(); 
+                                });
+                            },
+                            error: function(xhr) {
+                                Swal.fire("Gagal", "Gagal menghapus koleksi.", "error");
+                            }
+                        });
+                    }
+                });
+            }
+        </script>
     </body>
 </html>
