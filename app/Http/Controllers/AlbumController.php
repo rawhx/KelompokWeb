@@ -20,6 +20,32 @@ class AlbumController extends Controller
    
         return view('pages.album.index', compact('images', "albums"));        
     }
+
+    public function detailAlbumDefault()
+    {
+        $images = Image::where('user_id', auth()->id())->get();
+
+        $album = (object)[
+            'id' => null,
+            'album_nama' => 'Default',
+            'data' => $images->map(function ($img) {
+                return (object)[
+                    'image' => $img
+                ];
+            }),
+        ];
+
+        return view('pages.album.detail', compact('album'));
+    }
+
+
+    public function detailAlbum($id) {
+        $album = Album::with(['data.image'])
+            ->where('id', $id)
+            ->where('album_user_id', auth()->id())
+            ->firstOrFail();
+        return view('pages.album.detail', compact('album'));        
+    }
     
     public function dataFotoAdd() {
         $images = Image::where('user_id', auth()->id())->get();
@@ -62,6 +88,7 @@ class AlbumController extends Controller
     {
         try {
             $id = $request->input('id');
+            $detail = $request->input('detail');
 
             $album = Album::where('id', $id)
                 ->where('album_user_id', auth()->id())
@@ -70,7 +97,10 @@ class AlbumController extends Controller
             AlbumData::where('album_id', $album->id)->delete();
 
             $album->delete();
-
+ 
+            if ($detail) {
+                return redirect(route('albumPage'))->with('success', 'Album berhasil dihapus');
+            }
             return redirect()->back()->with('success', 'Album berhasil dihapus');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Gagal menghapus album');

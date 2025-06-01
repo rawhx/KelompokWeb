@@ -25,18 +25,29 @@
             <div class="d-flex justify-content-center">
                 <div class="container position-sticky top-0 py-3" style="max-width: 50%;">
                     <!-- Grid Gambar -->
-                    <div class="bento-grid" style="column-count: 3">
-                        <div class="bento-item">
-                            <img src="https://placehold.jp/300x300.png" alt="Foto 1" id="foto_0" class="img-fluid rounded shadow-sm" style="max-width: 15rem;">
-                        </div>
-                        <div class="bento-item">
-                            <img src="https://placehold.jp/300x300.png" alt="Foto 2" id="foto_1" class="img-fluid rounded shadow-sm" style="max-width: 15rem;">
-                        </div>
-                        <div class="bento-item">
-                            <img src="https://placehold.jp/300x300.png" alt="Foto 3" id="foto_2" class="img-fluid rounded shadow-sm" style="max-width: 15rem;">
-                        </div>
-                        <div class="bento-item">
-                            <img src="https://placehold.jp/300x300.png" alt="Foto 3" id="foto_2" class="img-fluid rounded shadow-sm" style="max-width: 15rem;">
+                    <div style="display: flex; justify-content: center;">
+                        <div class="bento-grid" style="
+                            display: grid;
+                            grid-template-columns: repeat(2, auto);
+                            gap: 1rem;
+                            justify-content: center;
+                        ">
+                            <div class="bento-item">
+                                <img src="https://placehold.jp/400x300.png" alt="Foto 1" id="foto_0"
+                                    class="img-fluid rounded shadow-sm" style="width: 15rem;">
+                            </div>
+                            <div class="bento-item">
+                                <img src="https://placehold.jp/400x300.png" alt="Foto 2" id="foto_1"
+                                    class="img-fluid rounded shadow-sm" style="width: 15rem;">
+                            </div>
+                            <div class="bento-item">
+                                <img src="https://placehold.jp/400x300.png" alt="Foto 3" id="foto_2"
+                                    class="img-fluid rounded shadow-sm" style="width: 15rem;">
+                            </div>
+                            <div class="bento-item">
+                                <img src="https://placehold.jp/400x300.png" alt="Foto 4" id="foto_3"
+                                    class="img-fluid rounded shadow-sm" style="width: 15rem;">
+                            </div>
                         </div>
                     </div>
 

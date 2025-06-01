@@ -32,7 +32,12 @@
                             : $selectedImageIds;
                     @endphp
 
-                    <div class="bento-grid" style="column-count: 3">
+                    <div class="bento-grid" style="
+                            display: grid;
+                            grid-template-columns: repeat(2, auto);
+                            gap: 1rem;
+                            justify-content: center;
+                    ">
                         @foreach (range(0, 3) as $i)
                             @php
                                 $imagePath = isset($albumImages[$i]) ? $albumImages[$i]->image->path : null;
