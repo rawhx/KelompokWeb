@@ -114,10 +114,6 @@
                         $checkmark.addClass('d-none');
                         $item.removeClass('border border-primary');
                     } else {
-                        if (selectedImages.size >= 4) {
-                            alert("Maksimal 3 gambar yang bisa dipilih.");
-                            return;
-                        }
                         selectedImages.add(imageId);
                         $checkmark.removeClass('d-none');
                         $item.addClass('border border-primary');
