@@ -27,8 +27,8 @@
                     <!-- Grid Gambar -->
                     @php
                         $albumImages = $album->data ?? [];
-                        $oldSelected = old('selected_images') 
-                            ? explode(',', old('selected_images')) 
+                        $oldSelected = old('selected_images')
+                            ? explode(',', old('selected_images'))
                             : $selectedImageIds;
                     @endphp
 
@@ -122,10 +122,6 @@
                         $checkmark.addClass('d-none');
                         $item.removeClass('border border-primary');
                     } else {
-                        if (selectedImages.size >= 3) {
-                            alert("Maksimal 3 gambar yang bisa dipilih.");
-                            return;
-                        }
                         selectedImages.add(imageId);
                         $checkmark.removeClass('d-none');
                         $item.addClass('border border-primary');
@@ -136,7 +132,7 @@
                     const selectedIds = Array.from(selectedImages);
                     $('#selectedImages').val(selectedIds.join(','));
 
-                    for (let i = 0; i < 3; i++) {
+                    for (let i = 0; i <= 3; i++) {
                         const imageId = selectedIds[i];
                         if (imageId) {
                             const path = $(`.selectable[data-image="${imageId}"]`).data('path');
