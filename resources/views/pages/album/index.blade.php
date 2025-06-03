@@ -28,7 +28,7 @@
                     </div>
                     @if ($images && count($images) > 0)
                         <div class="custom-grid">
-                            @foreach ($images as $image)
+                            @foreach ($images->take(4) as $image)
                                 <div class="rounded d-flex justify-content-center align-items-center" style="background-color: whitesmoke; height: 10rem;">
                                     <img src="{{ asset('storage/images/' . $image->path) }}" alt="gambar" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
                                 </div>
@@ -47,12 +47,12 @@
                                 {{-- Tombol Edit --}}
                                 <a href="{{ route('albumEdit', $item->id) }}" class="btn text-secondary p-0 text-decoration-none">Edit</a>
 
-                                {{-- Tombol Hapus --}}    
+                                {{-- Tombol Hapus --}}
                                 <button onclick="deleteKoleksi({{ $item->id }})" type="submit" class="btn text-danger p-0 text-decoration-none">Hapus</button>
                             </div>
                         </div>
                         <div onclick="detailAlbum({{$item->id}})" class="custom-grid">
-                            @foreach ($item->data as $data)
+                            @foreach ($item->data->take(4) as $data)
                                 <div class="rounded d-flex justify-content-center align-items-center" style="background-color: whitesmoke; height: 10rem;">
                                     <img src="{{ asset('storage/images/' . $data->image->path) }}" alt="gambar" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">
                                 </div>
@@ -93,7 +93,7 @@
                             },
                             success: function(response) {
                                 Swal.fire("Berhasil!", "Album telah dihapus.", "success").then(() => {
-                                    window.location.reload(); 
+                                    window.location.reload();
                                 });
                             },
                             error: function(xhr) {
